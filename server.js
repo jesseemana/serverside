@@ -9,9 +9,9 @@ const path = require("path")
 const {fileURLToPath} = require("url")
 const morgan = require('morgan');
 const connectDB = require('./config/connectDB')
-const {registerUser} = require('./controllers/user');
-const {verifyJWT} = require('./middleware/auth');
-const {createPost} = require('./controllers/posts');
+const {registerUser} = require('./controllers/user')
+const {verifyJWT} = require('./middleware/auth')
+const {createPost} = require('./controllers/posts')
 
 
 const PORT = process.env.PORT
