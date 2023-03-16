@@ -18,7 +18,9 @@ async function getUserPosts(req, res) {
 
 async function createPost(req, res) {
     const {userId, description, picturePath} = req.body
-    if(!userId || !description || !picturePath) return res.status(400).json({message: 'Please provide all fields'})
+    if(!userId || !description) {
+        return res.status(400).json({message: 'Please provide all fields'})
+    }
 
     const user = await User.findById(userId)
     if(!user) return res.status(400).json({message: 'User not found'})
