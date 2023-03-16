@@ -2,6 +2,20 @@ const Post = require('../model/Post')
 const User = require('../model/User')
 
 
+async function getFeedPosts(req, res) {
+    const post = await Post.find()
+    res.status(200).json(post)
+}
+
+
+async function getUserPosts(req, res) {
+    const {userId} = req.params
+    // GET A USERS' POSTS WITH THEIR ID 
+    const post = await Post.find({userId})
+    res.status(201).json(post)
+}
+
+
 async function createPost(req, res) {
     const {userId, description, picturePath} = req.body
     if(!userId || !description || !picturePath) return res.status(400).json({message: 'Please provide all fields'})
@@ -30,25 +44,9 @@ async function createPost(req, res) {
 }
 
 
-async function getFeedPosts(req, res) {
-    const post = await Post.find()
-    res.status(200).json(post)
-}
-
-
-async function getUserPosts(req, res) {
-    const {userId} = req.params
-
-    // GET A USERS' POSTS WITH THEIR ID 
-    const post = await Post.find({userId})
-
-    res.status(201).json(post)
-}
-
-
 async function likePosts(req, res) {
     const {id} = req.params
-    const {userId} = req.params
+    const {userId} = req.body
     if(!id || !userId) return res.status(400).json({message: 'Provide post Id and userId'})
 
     const post = await Post.findById(id)

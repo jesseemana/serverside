@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('colors');
+require('express-async-errors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
@@ -52,7 +53,7 @@ const upload = multer({storage});
 // USER PROFILE SETUP 
 // WON'T BE IN ROUTES FOLDER BECAUSE WE WANT TO USE MULTER UPLOAD IN INDEX 
 app.post('/auth/register', upload.single('picture'), registerUser);
-app.post('/posts', verifyJWT, upload.single('picture'), createPost);
+app.post('/posts/create', verifyJWT, upload.single('picture'), createPost);
 
 
 // ROUTES 
