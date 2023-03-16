@@ -1,4 +1,4 @@
-const Post = require('../model/Posts')
+const Post = require('../model/Post')
 const User = require('../model/User')
 
 
@@ -25,6 +25,7 @@ async function createPost(req, res) {
 
     // WE HAVE TO RETURN ALL POSTS TO THE FRONTEND 
     const post = await Post.find()
+
     res.status(201).json(post)
 }
 
@@ -40,6 +41,7 @@ async function getUserPosts(req, res) {
 
     // GET A USERS' POSTS WITH THEIR ID 
     const post = await Post.find({userId})
+
     res.status(201).json(post)
 }
 
@@ -60,7 +62,8 @@ async function likePosts(req, res) {
         post.likes.set(userId, true)
     }
 
-    const updatedPost = await Post.findByIdAndUpdate(id,
+    const updatedPost = await Post.findByIdAndUpdate(
+        id,
         {likes: post.likes},
         {new: true}
     )

@@ -6,7 +6,7 @@ const verifyJWT = require('../middleware/auth')
 router.use(verifyJWT)
 
 router.route('/').get(postsController.getFeedPosts)
-router.route('/:userId/pots').get(postsController.getUserPosts)
+router.route('/:userId/posts').get(postsController.getUserPosts)
 
 router.route('/:id/like').patch(postsController.likePosts)
 
