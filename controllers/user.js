@@ -3,7 +3,7 @@ const User = require('../model/User')
 
 
 
-async function register(req, res) {
+async function registerUser(req, res) {
     const {firstName, lastName, email, password, picturePath, friends, location, occupation} = req.body;
 
     if(!firstName || !lastName || !email || !password || !picturePath || !friends || !location || !occupation) {
@@ -105,7 +105,7 @@ async function addRemoveFriend(res, res) {
 
 
 module.exports = {
-    register,
+    registerUser,
     getUser,
     getUSerFriends,
     addRemoveFriend

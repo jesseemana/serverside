@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const {Schema} = mongoose;
+const {Schema} = mongoose
 
 const userSchema = new Schema({
     firstName: {
@@ -38,7 +38,7 @@ const userSchema = new Schema({
     viewedProfile: Number,
     impression: Number
 }, {
-    timestamps
-});
+    timestamps: true
+})
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema)

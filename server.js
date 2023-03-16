@@ -9,7 +9,9 @@ const path = require("path")
 const {fileURLToPath} = require("url")
 const morgan = require('morgan');
 const connectDB = require('./config/connectDB')
-const {register} = require('./controllers/user')
+const {registerUser} = require('./controllers/user');
+const {verifyJWT} = require('./middleware/auth');
+const {createPost} = require('./controllers/posts');
 
 
 const PORT = process.env.PORT
@@ -48,7 +50,8 @@ const upload = multer({storage})
 
 // USER PROFILE SETUP 
 // WON'T BE IN ROUTES FOLDER BECAUSE WE WANT TO USE MULTER UPLOAD IN INDEX 
-app.post('/auth/register', upload.single('picture'), register)
+app.post('/auth/register', upload.single('picture'), registerUser)
+app.post('/posts', verifyJWT, upload.single('picture'), createPost)
 
 
 // ROUTES 
