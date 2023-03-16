@@ -6,7 +6,7 @@ const User = require('../model/User')
 async function registerUser(req, res) {
     const {firstName, lastName, email, password, picturePath, friends, location, occupation} = req.body;
 
-    if(!firstName || !lastName || !email || !password || !picturePath || !friends || !location || !occupation) {
+    if(!firstName || !lastName || !email || !password || !location || !occupation) {
         return res.status(400).json({message: "Please fill all fields"});
     }
 
@@ -32,6 +32,14 @@ async function registerUser(req, res) {
     } else {
         return res.status(400).json({message: 'Invalid credentials provided'});
     }
+}
+
+
+
+async function getUsers(req, res) {
+    const users = await User.find()
+    if(!users) return res.status(400).json({message: 'User does not exist'})
+    res.status(200).json(users)
 }
 
 
@@ -70,7 +78,7 @@ async function getUSerFriends(req, res) {
 
 
 
-async function addRemoveFriend(res, res) {
+async function addRemoveFriend(req, res) {
     const {id, friendId} = req.params
     if(!id || !friendId) return res.status(400).json({message: `Please provide a user ID and friends' ID`})
 
@@ -107,6 +115,7 @@ async function addRemoveFriend(res, res) {
 module.exports = {
     registerUser,
     getUser,
+    getUsers,
     getUSerFriends,
-    addRemoveFriend
+    addRemoveFriend,
 }

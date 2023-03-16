@@ -9,8 +9,8 @@ function verifyJWT(req, res, next) {
 
     jwt.verify(
         token,
-        process.env.ACCESSTOKEN,
-        async function(err, decoded) {
+        process.env.ACCESS_TOKEN,
+        function(err, decoded) {
             if(err) return res.status(403).json({message: 'Forbiden'})
 
             req.user = decoded.id 
@@ -19,4 +19,4 @@ function verifyJWT(req, res, next) {
     )
 }
 
-module.exports = {verifyJWT}
+module.exports = verifyJWT
