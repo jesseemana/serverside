@@ -1,17 +1,17 @@
-const express = require('express');
-const router = express.Router();
-const postsController = require('../controllers/posts');
-const verifyJWT = require('../middleware/auth');
+const express = require('express')
+const router = express.Router()
+const postsController = require('../controllers/posts')
+const verifyJWT = require('../middleware/auth')
 
-router.use(verifyJWT);
+router.use(verifyJWT)
 
 router.route('/')
-    .get(postsController.getFeedPosts);
+    .get(postsController.getFeedPosts)
 
 router.route('/:userId/posts')
-    .get(postsController.getUserPosts);
+    .get(postsController.getUserPosts)
 
 router.route('/:id/like')
-    .patch(postsController.likePosts);
+    .patch(postsController.likePosts)
 
-module.exports = router;
+module.exports = router

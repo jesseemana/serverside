@@ -1,9 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/user');
-const verifyJWT = require('../middleware/auth');
+const express = require('express')
+const router = express.Router()
+const userController = require('../controllers/user')
+const verifyJWT = require('../middleware/auth')
 
-// router.use(verifyJWT);
+router.use(verifyJWT)
 
 router.route('/')
     .get(userController.getUsers)
