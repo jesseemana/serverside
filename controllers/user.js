@@ -1,13 +1,11 @@
 const User = require('../model/User')
 
 
-
 async function getUsers(req, res) {
     const users = await User.find()
     if(!users) return res.status(400).json({message: 'User does not exist'})
     res.status(200).json(users)
 }
-
 
 
 async function getUser(req, res) {
@@ -19,7 +17,6 @@ async function getUser(req, res) {
 
     res.status(200).json(user)
 }
-
 
 
 async function getUSerFriends(req, res) {
@@ -41,7 +38,6 @@ async function getUSerFriends(req, res) {
 
     res.status(200).json(formattedFriends)
 }
-
 
 
 async function addRemoveFriend(req, res) {
